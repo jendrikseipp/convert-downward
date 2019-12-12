@@ -1,0 +1,26 @@
+Augusto B. Correa <augusto.blaascorrea@unibas.ch>=Augusto B. Corrêa <augusto.blaascorrea@unibas.ch>
+Augusto B. Corrêa <gutoblaas@gmail.com>=Augusto B. Corrêa <augusto.blaascorrea@unibas.ch>
+Flogo=Florian Pommerening <florian.pommerening@unibas.ch>
+Florian Pommerening <florian.pommerening@unbas.ch>=Florian Pommerening <florian.pommerening@unibas.ch>
+Gabi Roeger <roeger@informatik.uni-freiburg.de>=Gabi Roeger <gabriele.roeger@unibas.ch>
+Jendrik Seipp <jendrikseipp@web.de>=Jendrik Seipp <jendrik.seipp@unibas.ch>
+Malte Helmert <helmert@informatik.uni-freiburg.de>=Malte Helmert <malte.helmert@unibas.ch>
+helmert@habakuk.informatik.uni-freiburg.de=Malte Helmert <malte.helmert@unibas.ch>
+Manuel Heusner <manuel.heusner@unibas.ch>=Manuel Heusner <manuel.heusner@stud.unibas.ch>
+Manuela Ortlieb=Manuela Ortlieb <ortlieb@informatik.uni-freiburg.de>
+manuela=Manuela Ortlieb <ortlieb@informatik.uni-freiburg.de>
+Patrick von Reth <patrick.vonreth@stud.unibas.ch>=Patrick von Reth <vonreth@kde.org>
+Patrick von Reth <vonreth@kde.og>=Patrick von Reth <vonreth@kde.org>
+Salome Simon <salome.simon@unibas.ch>=Salome Eriksson <salome.eriksson@unibas.ch>
+salome_simon=Salome Eriksson <salome.eriksson@unibas.ch>
+salome_simon <salome.simon@stud.unibas.ch>=Salome Eriksson <salome.eriksson@unibas.ch>
+Silvan Sievers <sievers@informatik.uni-freiburg.de>=Silvan Sievers <silvan.sievers@unibas.ch>
+SilvanS=Silvan Sievers <silvan.sievers@unibas.ch>
+emil=Emil Keyder
+emilkeyder=Emil Keyder
+mwehrle=Martin Wehrle
+"Fast Downward <downward@domain.invalid>"=Unknown
+hg=Unknown
+
+
+
