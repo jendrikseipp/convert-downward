@@ -18,8 +18,8 @@ Silvan Sievers <sievers@informatik.uni-freiburg.de>=Silvan Sievers <silvan.sieve
 SilvanS=Silvan Sievers <silvan.sievers@unibas.ch>
 emil=Emil Keyder
 emilkeyder=Emil Keyder
-mwehrle=Martin Wehrle
-"Fast Downward <downward@domain.invalid>"=Unknown
+mwehrle=Martin Wehrle <martin.wehrle@unibas.ch>
+"Fast Downward <downward@domain.invalid>"=Silvan Sievers <silvan.sievers@unibas.ch>
 hg=Unknown
 
 
