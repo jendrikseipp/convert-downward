@@ -9,9 +9,9 @@ Usage: run.sh [OLD FAST DOWNWARD REPO] [NEW FAST DOWNWARD REPO]
 Files:
 	- ReadMe.txt: this read me file
 	- commit_size_delta.log: incremental size of commits, ordered from 
-	    largest increase to lowest on the current master
+	    largest increase to lowest on the (at that time) current master
 	    repository.
 	- downward_authormap.txt: rules for renaming authors in commits.
-	- downward_filemap.txt: rules for including excluding files in
+	- downward_filemap.txt: rules for including or excluding files in
 	    commits.
     - run.sh: script which starts the conversion
