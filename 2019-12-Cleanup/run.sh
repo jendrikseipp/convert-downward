@@ -11,3 +11,6 @@ hg convert $1 $2 \
  --splicemap "$BASE/downward_splicemap.txt" \
  --branchmap "$BASE/downward_branchmap.txt"
 
+cd $2
+hg strip "branch(issue323)" --nobackup
+hg strip "branch(ipc-2011-fixes)" --nobackup
