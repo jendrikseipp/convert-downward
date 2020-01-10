@@ -1,0 +1,17 @@
+# Map how to convert .hgignore entries in regexp syntax to entries for .gitignore
+# Entries of .hgignore in glob syntax do not need a mapping as they can be
+# reused as they are.
+
+\.pyc$=*.pyc
+^driver/.cache/v/cache/lastfailed$=/driver/.cache/v/cache/lastfailed
+
+^experiments/issue[0-9]*/data/=/experiments/issue*/data/
+^experiments/issue[0-9]*/venv/=/experiments/issue*/venv/
+^experiments/issue[0-9]*/venv.*/=/experiments/issue*/venv*/
+^experiments/issue[0-9]*/.*.-microbenchmark/\.obj/=/experiments/issue*/?*-microbenchmark/.obj/
+^experiments/issue[0-9]*/.*.-microbenchmark/benchmark$=/experiments/issue*/?*-microbenchmark/benchmark
+^experiments/issue[0-9]*/.*.-microbenchmark/Makefile\.depend$=/experiments/issue*/?*-microbenchmark/Makefile.depend
+^misc/autodoc/downward-xmlrpc\.secret$=/misc/autodoc/downward-xmlrpc.secret
+^misc/.tox/=/misc/.tox/
+^builds/=/builds/
+^src/CMakeLists.txt.user$=/src/CMakeLists.txt.user
