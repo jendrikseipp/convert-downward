@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 # Verify correct inputs
 if [ $# -lt 2 ] || [ $# -gt 3 ]; then
   echo "Invalid arguments. Use: $0 SRC DST [REMOTE-GIT-ORIGIN]"
@@ -16,7 +18,7 @@ fi
 
 # Setup paths
 SRC=`realpath $1`
-DST=`realpath $2`
+DST=`realpath -m $2`
 BASE=$(realpath $(dirname $(readlink -f $0)))
 CONVERT_HGIGNORE="${BASE}/convert_hgignore_to_gitignore.py"
 MAPPING_HGIGNORE="${BASE}/ignore_map.txt"
@@ -26,12 +28,21 @@ FAST_EXPORT_REPO=${FAST_EXPORT_REPO:-"$BASE/fast-export"}
 if [ ! -d $FAST_EXPORT_REPO ]; then
     git clone https://github.com/frej/fast-export.git $FAST_EXPORT_REPO
     cd $FAST_EXPORT_REPO
-    git checkout v180317
+
+    MERCURIAL_VERSION=`python -c "import re;print(re.match('.*version (\d+\.\d+\.\d+).*', '''$(hg --version)''',re.MULTILINE).group(1))"`
+    REVISION="master"
+    if [ "$MERCURIAL_VERSION" = "4.3.1" ]; then
+        REVISION="v180317"
+    fi
+    ## with mercurial version 4.8.2, the revision 2ba5d774 works
+    git checkout $REVISION
 fi
+
 FAST_EXPORT="$FAST_EXPORT_REPO/hg-fast-export.sh"
 echo "fast-export location: $FAST_EXPORT"
 
 # Convert Mercurial to Git
+echo "REMARK: If the script fails, check whether your Mercurial version requires an older repository revision (see script)"
 mkdir -p $DST
 cd $DST
 git init
@@ -69,4 +80,5 @@ done
 
 if [ $# -eq 3 ]; then
     git remote add origin $3
+    git push --mirror
 fi
