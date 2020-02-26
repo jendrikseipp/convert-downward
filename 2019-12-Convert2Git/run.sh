@@ -51,10 +51,12 @@ git checkout
 
 # Convert .hgignore to .gitignore
 BRANCHES=$(hg -R ${SRC} branches)
-BRANCHES=`python3 -c "print(' '.join(\
-  'master' if name == 'default' else name \
-  for no, name in enumerate('''$(hg -R ${SRC} branches)'''.split()) \
-  if no % 2 == 0))"`
+BRANCHES=`python3 -c "\
+branches = '''$(hg -R ${SRC} branches)'''.split()
+branches = [branch for branch in branches if branch != '(inactive)']
+branches = ['master' if branch == 'default' else branch for branch in branches]
+branches = [branch for no, branch in enumerate(branches) if no % 2 == 0]
+print(' '.join(branch for branch in branches))"`
 HGIGNORE="${DST}/.hgignore"
 for BRANCH in $BRANCHES; do
   git checkout $BRANCH
