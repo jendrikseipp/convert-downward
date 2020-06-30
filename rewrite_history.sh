@@ -6,10 +6,10 @@ if [ $# -ne 2 ]; then
 fi
 BASE=$(dirname $(readlink -f $0))
 hg convert $1 $2 \
- --authormap "$BASE/downward_authormap.txt" \
- --filemap "$BASE/downward_filemap.txt" \
- --splicemap "$BASE/downward_splicemap.txt" \
- --branchmap "$BASE/downward_branchmap.txt"
+ --authormap "$BASE/data/downward_authormap.txt" \
+ --filemap "$BASE/data/downward_filemap.txt" \
+ --splicemap "$BASE/data/downward_splicemap.txt" \
+ --branchmap "$BASE/data/downward_branchmap.txt"
 
 cd $2
 hg strip "branch(issue323)" --nobackup
