@@ -5,7 +5,10 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 BASE=$(dirname $(readlink -f $0))
-hg convert $1 $2 \
+hg \
+ --config extensions.renaming_mercurial_source=$BASE/renaming_mercurial_source.py \
+ convert $1 $2 \
+ --source-type renaming_mercurial_source \
  --authormap "$BASE/data/downward_authormap.txt" \
  --filemap "$BASE/data/downward_filemap.txt" \
  --splicemap "$BASE/data/downward_splicemap.txt" \
