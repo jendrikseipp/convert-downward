@@ -1,17 +1,13 @@
-Use this script to rewrite history! The script will tidy up your 
-Mercurial Fast Downward history by
-	- correcting incorrect author names in the commits
-	- removing files from commits which take up a lot of space and are
-	  not anymore necessary.
-	  
-Usage: run.sh [OLD FAST DOWNWARD REPO] [NEW FAST DOWNWARD REPO]
+This script converts the official Fast-Downward repository from
+Mercurial to Git. If the repository history was compatible with the
+Fast-Downward development repository, then the converted repository
+stays compatible.
 
-Files:
-	- ReadMe.txt: this read me file
-	- commit_size_delta.log: incremental size of commits, ordered from 
-	    largest increase to lowest on the (at that time) current master
-	    repository.
-	- downward_authormap.txt: rules for renaming authors in commits.
-	- downward_filemap.txt: rules for including or excluding files in
-	    commits.
-    - run.sh: script which starts the conversion
+Requirements: python3.5+
+Usage: ./run.sh [REPOSITORY TO CONVERT] [NEW REPOSITORY LOCATION]
+
+The script will automatically setup the required tools (a virtual 
+environment with the required Mercurial version and the fast-export 
+tool by https://github.com/frej/fast-export.git).
+
+Let's rewrite history!
