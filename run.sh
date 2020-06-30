@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -exuo pipefail
 
 if ! command -v python3 > /dev/null; then
     echo 'Missing requirement: python3.5+'
