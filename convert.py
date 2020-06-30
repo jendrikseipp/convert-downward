@@ -20,12 +20,6 @@ def type_not_exists(arg):
     return os.path.abspath(arg)
 
 
-def type_is_dir(arg):
-    if not os.path.isdir(arg):
-        raise argparse.ArgumentTypeError("Is not a directory.")
-    return os.path.abspath(arg)
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "source", type=type_mercurial_directory,
@@ -58,8 +52,6 @@ def main(options):
         call(["git", "init"])
         call([FAST_EXPORT_SCRIPT, "-r", options.source])
         call(["git", "checkout"])
-
-        # TODO: convert hgignore to gitignore
 
         print("Remove closed branches.")
         open_branches = get_branches(options.source, [])
