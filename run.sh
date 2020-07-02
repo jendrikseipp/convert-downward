@@ -2,14 +2,35 @@
 
 set -exuo pipefail
 
+MISSING_REQUIREMENTS=""
+
 if ! command -v python3 > /dev/null; then
-    echo 'Missing requirement: python3.5+'
-    exit
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
+elif [[ `python3 -c "import sys; print(sys.version_info < (3,5))"` = "True" ]];then
+        MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
 fi
 
-if [[ `python3 -c "import sys; print(sys.version_info < (3,5))"` = "True" ]];then
-    echo "Missing requirement: python3.5+"
+if ! `python3 -c "import ensurepip" 2> /dev/null`; then
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: \
+ensurepip module missing for python3. For Debian/Ubuntu use \
+'sudo apt install python3-venv'"
 fi
+
+if [[ `dpkg-query -f '${Package}\n' -W | grep "python3-dev"` == "" ]];then
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3-dev"
+fi
+
+if ! command -v git > /dev/null; then
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: git"
+fi
+
+if [[ ${MISSING_REQUIREMENTS} != "" ]]; then
+    echo -e ${MISSING_REQUIREMENTS}
+    exit 3
+fi
+
+
+
 
 BASE=$(realpath $(dirname $(readlink -f $0)))
 DATA="${BASE}/data"
