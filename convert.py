@@ -54,14 +54,15 @@ def remove_temporary_data():
 def main(options):
     remove_temporary_data()  # remove fragments of incomplete runs
 
-    print("Rewrite history")
-    call([REWRITE_HISTORY_SCRIPT,
-          options.source, TEMPORARY_CONVERTED_REPOSITORY])
-
-    print("Create {}.".format(options.destination))
-    os.makedirs(options.destination)
-    os.chdir(options.destination)
     try:
+        print("Rewrite history")
+        call(["/bin/bash", REWRITE_HISTORY_SCRIPT,
+              options.source, TEMPORARY_CONVERTED_REPOSITORY])
+
+        print("Create {}.".format(options.destination))
+        os.makedirs(options.destination)
+        os.chdir(options.destination)
+
         print("Execute hg-fast-export.")
         call(["git", "init"])
         call([FAST_EXPORT_SCRIPT, "-r", TEMPORARY_CONVERTED_REPOSITORY])
