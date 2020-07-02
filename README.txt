@@ -3,7 +3,12 @@ Mercurial to Git. If the repository history was compatible with the
 Fast-Downward development repository, then the converted repository
 stays compatible.
 
-Requirements: python3.5+
+Requirements:
+	- python3.5+
+	- python3 header files (on Debian/Ubuntu: sudo apt install python3-dev)
+	- python3 module 'ensurepip' (on Debian/Ubuntu: sudo apt install python3-venv)
+	- git
+
 Usage: ./run.sh [REPOSITORY TO CONVERT] [NEW REPOSITORY LOCATION]
 
 The script will automatically setup the required tools (a virtual 
