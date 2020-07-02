@@ -8,6 +8,7 @@ BASE=$(dirname $(readlink -f $0))
 hg \
  --config extensions.renaming_mercurial_source=$BASE/renaming_mercurial_source.py \
  convert $1 $2 \
+ --config extensions.hgext.convert= \
  --source-type renaming_mercurial_source \
  --authormap "$BASE/data/downward_authormap.txt" \
  --filemap "$BASE/data/downward_filemap.txt" \
@@ -15,5 +16,5 @@ hg \
  --branchmap "$BASE/data/downward_branchmap.txt"
 
 cd $2
-hg strip "branch(issue323)" --nobackup
-hg strip "branch(ipc-2011-fixes)" --nobackup
+hg --config extensions.strip= strip "branch(issue323)" --nobackup
+hg --config extensions.strip= strip "branch(ipc-2011-fixes)" --nobackup
