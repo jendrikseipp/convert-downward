@@ -14,13 +14,14 @@ TEMPORARY_CONVERTED_REPOSITORY = os.path.join(
 
 def type_mercurial_directory(arg):
     if not os.path.isdir(os.path.join(arg, ".hg")):
-        raise argparse.ArgumentTypeError("Not a Mercurial repository.")
+        raise argparse.ArgumentTypeError(
+            "{} is not a Mercurial repository.".format(arg))
     return os.path.abspath(arg)
 
 
 def type_not_exists(arg):
     if os.path.exists(arg):
-        raise argparse.ArgumentTypeError("Exists already.")
+        raise argparse.ArgumentTypeError("{} exists already.".format(arg))
     return os.path.abspath(arg)
 
 
