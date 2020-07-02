@@ -1,15 +1,13 @@
 import argparse
 import os
-import shutil
 import subprocess
 import sys
+import tempfile
 
 FAST_EXPORT_SCRIPT = os.path.join(
     os.environ['FAST_EXPORT_REPO'], "hg-fast-export.sh")
 REWRITE_HISTORY_SCRIPT = os.path.join(
     os.path.dirname(sys.argv[0]), "rewrite_history.sh")
-TEMPORARY_CONVERTED_REPOSITORY = os.path.join(
-    os.path.dirname(sys.argv[0]), "data", "temporary_converted_repository")
 
 
 def type_mercurial_directory(arg):
@@ -47,42 +45,36 @@ def get_branches(hg_repo, args):
     ).split()
 
 
-def remove_temporary_data():
-    if os.path.exists(TEMPORARY_CONVERTED_REPOSITORY):
-        shutil.rmtree(TEMPORARY_CONVERTED_REPOSITORY)
-
-
 def main(options):
-    remove_temporary_data()  # remove fragments of incomplete runs
+    with tempfile.TemporaryDirectory() as dir_tmp:
+        try:
+            print("Rewrite history")
+            call(["/bin/bash", REWRITE_HISTORY_SCRIPT,
+                  options.source, dir_tmp])
 
-    try:
-        print("Rewrite history")
-        call(["/bin/bash", REWRITE_HISTORY_SCRIPT,
-              options.source, TEMPORARY_CONVERTED_REPOSITORY])
+            print("Create {}.".format(options.destination))
+            os.makedirs(options.destination)
+            os.chdir(options.destination)
 
-        print("Create {}.".format(options.destination))
-        os.makedirs(options.destination)
-        os.chdir(options.destination)
+            print("Execute hg-fast-export.")
+            call(["git", "init"])
+            call([FAST_EXPORT_SCRIPT, "-r", dir_tmp])
+            call(["git", "checkout", "main"])
 
-        print("Execute hg-fast-export.")
-        call(["git", "init"])
-        call([FAST_EXPORT_SCRIPT, "-r", TEMPORARY_CONVERTED_REPOSITORY])
-        call(["git", "checkout", "main"])
+            print("Remove closed & merged branches.")
+            open_branches = get_branches(dir_tmp, [])
+            unmerged_branches = call([
+                "hg", "log", "-r", "head()-parents(merge())", "-R",
+                dir_tmp, "--template", "{branch} "]).split()
+            all_branches = get_branches(dir_tmp, ["--closed"])
+            for branch in (set(all_branches)
+                           - set(open_branches)
+                           - set(unmerged_branches)):
+                call(["git", "branch", "-d", branch])
 
-        print("Remove closed & merged branches.")
-        open_branches = get_branches(TEMPORARY_CONVERTED_REPOSITORY, [])
-        unmerged_branches = call([
-            "hg", "log", "-r", "head()-parents(merge())", "-R",
-            TEMPORARY_CONVERTED_REPOSITORY, "--template", "{branch} "]).split()
-        all_branches = get_branches(TEMPORARY_CONVERTED_REPOSITORY, ["--closed"])
-        for branch in (set(all_branches) - set(open_branches) - set(unmerged_branches)):
-            call(["git", "branch", "-d", branch])
-
-    except subprocess.CalledProcessError as e:
-        print("Failed: {}".format(" ".join(e.cmd)), file=sys.stderr)
-        remove_temporary_data()
-        sys.exit(2)
-    remove_temporary_data()
+        except subprocess.CalledProcessError as e:
+            print("Failed: {}".format(" ".join(e.cmd)), file=sys.stderr)
+            sys.exit(2)
     print("Conversion done.")
 
 
