@@ -20,7 +20,7 @@ emil=Emil Keyder <emilkeyder@gmail.com>
 emilkeyder=Emil Keyder <emilkeyder@gmail.com>
 mwehrle=Martin Wehrle <martin.wehrle@unibas.ch>
 "Fast Downward <downward@domain.invalid>"=Silvan Sievers <silvan.sievers@unibas.ch>
-hg=Unknown
+hg=Erez Karpas <karpase@gmail.com>
 
 
 
