@@ -72,6 +72,9 @@ def main(options):
                            - set(unmerged_branches)):
                 call(["git", "branch", "-d", branch])
 
+            print("Remove empty commits")
+            call(["git", "filter-branch", "--prune-empty", "--tag-name-filter", "cat", "--", "--all"])
+
         except subprocess.CalledProcessError as e:
             print("Failed: {}".format(" ".join(e.cmd)), file=sys.stderr)
             sys.exit(2)
