@@ -1,6 +1,5 @@
 include "."
 exclude "./benchmarks"
-exclude "./downward"
 exclude "./downward/search/lp"
 exclude "./src/search/lp"
 include "./src/search/lp/lp_internals.cc"
