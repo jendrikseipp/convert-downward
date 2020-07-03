@@ -75,6 +75,9 @@ def main(options):
             print("Remove empty commits")
             call(["git", "filter-branch", "--prune-empty", "--tag-name-filter", "cat", "--", "--all"])
 
+            print("Cleaning up")
+            call(["git", "gc", "--aggressive"])
+
         except subprocess.CalledProcessError as e:
             print("Failed: {}".format(" ".join(e.cmd)), file=sys.stderr)
             sys.exit(2)
