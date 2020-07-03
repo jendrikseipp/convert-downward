@@ -1,6 +1,6 @@
-This script converts the official Fast-Downward repository from
+This script converts the official Fast Downward repository from
 Mercurial to Git. If the repository history was compatible with the
-Fast-Downward development repository, then the converted repository
+Fast Downward development repository, then the converted repository
 stays compatible.
 
 Requirements:
