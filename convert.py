@@ -30,10 +30,15 @@ parser.add_argument(
     help="Destination directory for the converted repository. The destination"
          "may NOT exist."
 )
+parser.add_argument(
+    "--redirect-fast-export-stderr", default=None, type=os.path.abspath,
+    help="Redirects the stderr of fast-export to a file (fast-export writes"
+         "everything to stderr)"
+)
 
 
-def call(args):
-    return subprocess.check_output(args).decode()
+def call(args, stderr=None):
+    return subprocess.check_output(args, stderr=stderr).decode()
 
 
 def get_branches(hg_repo, args):
@@ -50,7 +55,12 @@ def main(options):
 
         print("Execute hg-fast-export.")
         call(["git", "init"])
-        call([FAST_EXPORT_SCRIPT, "-r", options.source])
+        if options.redirect_fast_export_stderr is None:
+            call([FAST_EXPORT_SCRIPT, "-r", options.source])
+        else:
+            with open(options.redirect_fast_export_stderr, "w") as f:
+                call([FAST_EXPORT_SCRIPT, "-r", options.source], stderr=f)
+
         call(["git", "checkout", "main"])
 
         print("Remove closed & merged branches.")

@@ -2,8 +2,9 @@
 
 set -euo pipefail
 
-if [[ $# -ne 3 ]]; then
-  echo "Invalid arguments. Use: $0 [SRC REPOSITORY] [CLEANED REPOSITORY] [CONVERTED REPOSITORY]"
+if [[ $# -le 2 ]]; then
+  echo "Invalid arguments. Use: $0 [SRC REPOSITORY] [CLEANED REPOSITORY] \
+[CONVERTED REPOSITORY] (--redirect-fast-export-stderr FILE)"
   exit 1
 fi
 
@@ -45,7 +46,7 @@ if ! ${RUN_CLEANUP} $1 $2; then
   exit 2
 fi
 
-if ! ${RUN_CONVERSION} $2 $3; then
+if ! ${RUN_CONVERSION} ${@:2}; then
   echo "Conversion failed."
   exit 2
 fi
