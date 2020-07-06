@@ -27,7 +27,7 @@ Cleanup Process:
 - fix typos in branch names
 - remove large files from history that should not have been added
 - Change commit message to follow our new convention (each commit shall
-start with `[BRANCH NAME]`
+start with `[BRANCH NAME]`)
 
 Conversion Process:
 - convert a mercurial repository with `fast-export`
