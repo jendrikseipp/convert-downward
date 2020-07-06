@@ -25,10 +25,10 @@ fi
 
 
 BASE=$(realpath $(dirname $(readlink -f $0)))
-SETUP_CLEANUP="${BASE}/setup_cleanup.sh"
-SETUP_CONVERSION="${BASE}/setup_conversion.sh"
-RUN_CLEANUP="${BASE}/run_cleanup.sh"
-RUN_CONVERSION="${BASE}/run_conversion.sh"
+SETUP_CLEANUP="${BASE}/setup-cleanup.sh"
+SETUP_CONVERSION="${BASE}/setup-conversion.sh"
+RUN_CLEANUP="${BASE}/run-cleanup.sh"
+RUN_CONVERSION="${BASE}/run-conversion.sh"
 
 if ! /bin/bash ${SETUP_CLEANUP}; then
   echo "Error during the setup for the cleaning script."

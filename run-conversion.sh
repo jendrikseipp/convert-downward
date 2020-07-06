@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BASE=$(dirname $(readlink -f $0))
-SETUP_CONVERSION="${BASE}/setup_conversion.sh"
+SETUP_CONVERSION="${BASE}/setup-conversion.sh"
 CONVERT="${BASE}/convert.py"
 VIRTUALENV="${BASE}/data/py3-env"
 

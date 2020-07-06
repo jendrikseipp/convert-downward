@@ -19,7 +19,7 @@ fi
 
 
 BASE=$(dirname $(readlink -f $0))
-SETUP_CLEANUP="${BASE}/setup_cleanup.sh"
+SETUP_CLEANUP="${BASE}/setup-cleanup.sh"
 VIRTUALENV="${BASE}/data/py3-env"
 
 if ! /bin/bash ${SETUP_CLEANUP}; then

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE=$(dirname $(readlink -f $0))
-SETUP_CLEANUP="${BASE}/setup_cleanup.sh"
+SETUP_CLEANUP="${BASE}/setup-cleanup.sh"
 FAST_EXPORT_REPO="${BASE}/data/fast-export"
 FAST_EXPORT_VERSION="v200213-23-g44c50d0"
 

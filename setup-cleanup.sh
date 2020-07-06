@@ -6,7 +6,7 @@ MISSING_REQUIREMENTS=""
 
 if ! command -v python3 > /dev/null; then
     MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
-elif [[ `python3 -c "import sys; print(sys.version_info < (3,5))"` = "True" ]];then
+elif [[ `python3 -c "import sys; print(sys.version_info < (3,6))"` = "True" ]];then
         MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
 fi
 
