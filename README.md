@@ -4,7 +4,7 @@ Fast Downward development repository, then the converted repository
 stays compatible.
 
 Requirements:
-  - Python 3.5+ (on Debian/Ubuntu: sudo apt install python3)
+  - Python 3.6+ (on Debian/Ubuntu: sudo apt install python3)
   - Python 3 header files (on Debian/Ubuntu: sudo apt install python3-dev)
   - Python 3 "ensurepip" module (on Debian/Ubuntu: sudo apt install python3-venv)
   - Git
