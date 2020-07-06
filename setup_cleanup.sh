@@ -5,19 +5,15 @@
 MISSING_REQUIREMENTS=""
 
 if ! command -v python3 > /dev/null; then
-    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
-elif [[ `python3 -c "import sys; print(sys.version_info < (3,5))"` = "True" ]];then
-        MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.5+"
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.6+"
+elif [[ `python3 -c "import sys; print(sys.version_info < (3,6))"` = "True" ]];then
+        MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.6+"
 fi
 
 if ! `python3 -c "import ensurepip" 2> /dev/null`; then
     MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: \
 ensurepip module missing for python3. For Debian/Ubuntu use \
 'sudo apt install python3-venv'"
-fi
-
-if [[ `dpkg-query -f '${Package}\n' -W | grep "python3-dev"` == "" ]];then
-    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3-dev"
 fi
 
 if [[ ${MISSING_REQUIREMENTS} != "" ]]; then
