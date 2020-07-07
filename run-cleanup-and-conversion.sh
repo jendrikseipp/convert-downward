@@ -3,8 +3,8 @@
 set -euo pipefail
 
 if [[ $# -le 1 ]]; then
-  echo "Invalid arguments. Use: $0 [SRC REPOSITORY] \
-[CONVERTED REPOSITORY] (--redirect-fast-export-stderr FILE)"
+  echo "Invalid arguments. Use: $0 SRC_REPOSITORY \
+CONVERTED_REPOSITORY [--redirect-fast-export-stderr FILE]"
   exit 1
 fi
 

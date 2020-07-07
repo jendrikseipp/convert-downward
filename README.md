@@ -11,22 +11,21 @@ repository is compatible with the official Fast Downward Git repository.
   - Git
 
 ## Usage
-  Run the script with the following command where [MERCURIAL REPOSITORY] is a
-  path to the repository you want to convert, [CLEANED MERCURIAL REPOSITORY] is
-  a location where the intermediate cleaned up Mercurial repository will be
-  written to, and [CONVERTED GIT REPOSITORY] is the location where the
-  resulting Git repository will be written to. None of the paths may contain
-  spaces. The intermediate cleaned up Mercurial repository can be deleted after
-  the conversion.
+  Run the script with the following command where MERCURIAL_REPOSITORY is the path to the 
+  repository you want to convert and CONVERTED_GIT_REPOSITORY is the location where the
+  resulting Git repository will be written to. None of the paths may contain spaces. The 
+  optional parameter can be used to redirect the output of fast-export to a file.
 
-    ./run-cleanup-and-conversion.sh [MERCURIAL REPOSITORY] \
-                                    [CLEANED MERCURIAL REPOSITORY] \
-                                    [CONVERTED GIT REPOSITORY]
+    ./run-cleanup-and-conversion.sh MERCURIAL_REPOSITORY CONVERTED_GIT_REPOSITORY \
+        [--redirect-fast-export-stderr FILE]
 
-  The conversion is done in two steps that can also be run individually:
+  The conversion is done in two steps that can also be run individually. In this case
+  CLEANED_MERCURIAL_REPOSITORY is a location where the intermediate cleaned up Mercurial 
+  repository will be written to:
 
-    ./run-cleanup.sh [MERCURIAL REPOSITORY] [CLEANED MERCURIAL REPOSITORY]
-    ./run-conversion.sh [CLEANED MERCURIAL REPOSITORY] [CONVERTED GIT REPOSITORY]
+    ./run-cleanup.sh MERCURIAL_REPOSITORY CLEANED_MERCURIAL_REPOSITORY
+    ./run-conversion.sh CLEANED_MERCURIAL_REPOSITORY CONVERTED_GIT_REPOSITORY \
+        [--redirect-fast-export-stderr FILE]
 
 The scripts will automatically set up the required tools (a virtual
 environment with compatible versions of Mercurial and the fast-export tool
