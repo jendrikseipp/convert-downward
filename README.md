@@ -10,15 +10,15 @@ Requirements:
 
 Usage:
 
-  Run the script with the following command where [MERCURIAL REPOSITORY] is
-  a path to the repository you want to convert, [CLEANED MERCURIAL REPOSITORY]
-  is a location we can write an intermediate repository to, and
-  [CONVERTED GIT REPOSITORY] is the location where we should write the
-  resulting git repository. None of the paths may contain spaces.
-  The intermediate cleaned Mercurial repository can be deleted after the
-  conversion.
+  Run the script with the following command where [MERCURIAL REPOSITORY] is a
+  path to the repository you want to convert, [CLEANED MERCURIAL REPOSITORY] is
+  a location where the intermediate cleaned up Mercurial repository will be
+  written to, and [CONVERTED GIT REPOSITORY] is the location where the
+  resulting Git repository will be written to. None of the paths may contain
+  spaces. The intermediate cleaned up Mercurial repository can be deleted after
+  the conversion.
 
-	./run-cleanup-and-conversion.sh [MERCURIAL REPOSITORY] \
+  ./run-cleanup-and-conversion.sh [MERCURIAL REPOSITORY] \
                                     [CLEANED MERCURIAL REPOSITORY] \
                                     [CONVERTED GIT REPOSITORY]
 
@@ -42,15 +42,15 @@ Warnings:
 - The cleanup script generates repeated warnings about missing or invalid tags.
   These are caused by moved or broken tags and can be ignored.
 
-Cleanup Process:
+Details of the cleanup process:
 - fix and unify author names in commit message
 - fix typos in branch names
 - remove large files from history that should not have been added
-- Change commit message to follow our new convention (each commit shall
-start with "`[BRANCH NAME] `")
+- change commit message to follow the new convention which is to start with
+"`[BRANCH NAME] `"
 
-Conversion Process:
-- convert a Mercurial repository with `fast-export`
+Details of the conversion process:
+- convert a Mercurial repository to Git with `fast-export`
 - delete all Git branches that belong to Mercurial branches which have been
 merged and closed
 - remove empty commits
