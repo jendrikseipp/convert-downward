@@ -72,7 +72,11 @@ def main(options):
         for branch in (set(all_branches)
                        - set(open_branches)
                        - set(unmerged_branches)):
-            call(["git", "branch", "-d", branch])
+            # Use -D to avoid "branch not fully merged" warning, which
+            # occurs when trying to delete a branch that is closed and merged
+            # into a non-"default" branch, even if that branch will not be closed
+            # (https://stackoverflow.com/questions/7548926).
+            call(["git", "branch", "-D", branch])
 
         print("Remove empty commits")
         call(["git", "filter-branch", "--prune-empty", "--tag-name-filter", "cat", "--", "--all"])
