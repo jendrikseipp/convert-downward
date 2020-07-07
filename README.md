@@ -18,7 +18,7 @@ Usage:
   spaces. The intermediate cleaned up Mercurial repository can be deleted after
   the conversion.
 
-  ./run-cleanup-and-conversion.sh [MERCURIAL REPOSITORY] \
+    ./run-cleanup-and-conversion.sh [MERCURIAL REPOSITORY] \
                                     [CLEANED MERCURIAL REPOSITORY] \
                                     [CONVERTED GIT REPOSITORY]
 
@@ -52,7 +52,7 @@ Details of the cleanup process:
 Details of the conversion process:
 - convert a Mercurial repository to Git with `fast-export`
 - delete all Git branches that belong to Mercurial branches which have been
-merged and closed
+  merged and closed
 - remove empty commits
 - run garbage collections
 
