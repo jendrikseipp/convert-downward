@@ -69,14 +69,14 @@ def main(options):
             "hg", "log", "-r", "head()-parents(merge())", "-R",
             options.source, "--template", "{branch} "]).split()
         all_branches = get_branches(options.source, ["--closed"])
-        for branch in (set(all_branches)
-                       - set(open_branches)
-                       - set(unmerged_branches)):
-            # Use -D to avoid "branch not fully merged" warning, which
-            # occurs when trying to delete a branch that is closed and merged
-            # into a non-"default" branch, even if that branch will not be closed
-            # (https://stackoverflow.com/questions/7548926).
-            call(["git", "branch", "-D", branch])
+        for branch in (set(all_branches) - set(open_branches) - set(unmerged_branches)):
+            # This call fails for branches that are closed and merged
+            # into a non-"main" branch (https://stackoverflow.com/questions/7548926).
+            try:
+                call(["git", "branch", "-d", branch])
+            except subprocess.CalledProcessError as e:
+                # Nothing to do: the output already tells the user what to do.
+                pass
 
         print("Remove empty commits")
         call(["git", "filter-branch", "--prune-empty", "--tag-name-filter", "cat", "--", "--all"])

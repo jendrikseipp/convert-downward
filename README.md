@@ -36,6 +36,9 @@ https://github.com/frej/fast-export.git).
 - Multiple Mercurial heads with the same branch name are not supported. If your
   repository has those, you will see
   `Error: repository has at least one unnamed head: hg rXXX`.
+- If you have closed and merged a branch "subfeature" into a branch "feature"
+  and "feature" is not yet merged into "main", you might want to delete "subfeature"
+  branch from the resulting Git repository by running `git branch -D subfeature`.
 
 ## Warnings
 - Both scripts generate a lot of output on stdout and stderr. If you want
