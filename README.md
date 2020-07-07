@@ -27,9 +27,14 @@ Usage:
     ./run-cleanup.sh [MERCURIAL REPOSITORY] [CLEANED MERCURIAL REPOSITORY]
     ./run-conversion.sh [CLEANED MERCURIAL REPOSITORY] [CONVERTED GIT REPOSITORY]
 
-The scripts will automatically setup the required tools (a virtual
+The scripts will automatically set up the required tools (a virtual
 environment with compatible versions of Mercurial and the fast-export tool
 https://github.com/frej/fast-export.git).
+
+Limitations:
+- Multiple Mercurial heads with the same branch name are not supported. If your
+  repository has those, you will see
+  `Error: repository has at least one unnamed head: hg rXXX`.
 
 Warnings:
 - Both scripts generate a lot of output on stdout and stderr. If you want
