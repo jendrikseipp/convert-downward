@@ -81,8 +81,7 @@ def main(options):
         call(["git", "gc", "--aggressive"])
 
     except subprocess.CalledProcessError as e:
-        print("Failed: {}".format(" ".join(e.cmd)), file=sys.stderr)
-        sys.exit(2)
+        sys.exit(f"Conversion failed: {' '.join(e.cmd)}")
     print("Conversion done.")
 
 
