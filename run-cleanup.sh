@@ -30,8 +30,9 @@ source "$VIRTUALENV/bin/activate"
 
 hg \
  --config extensions.renaming_mercurial_source="${BASE}/renaming_mercurial_source.py" \
- convert $1 $2 \
  --config extensions.hgext.convert= \
+ --config format.sparse-revlog=0 \
+ convert "$1" "$2" \
  --source-type renaming_mercurial_source \
  --authormap "${BASE}/data/downward_authormap.txt" \
  --filemap "${BASE}/data/downward_filemap.txt" \
