@@ -28,7 +28,9 @@ if ! /bin/bash ${SETUP_CLEANUP}; then
 fi
 source "$VIRTUALENV/bin/activate"
 
-hg \
+# Disable all extensions.
+# (https://stackoverflow.com/questions/46612210/mercurial-disable-all-the-extensions-from-the-command-line)
+HGRCPATH= hg \
  --config extensions.renaming_mercurial_source="${BASE}/renaming_mercurial_source.py" \
  --config extensions.hgext.convert= \
  --config format.sparse-revlog=0 \
