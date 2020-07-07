@@ -13,8 +13,8 @@ repository is compatible with the official Fast Downward Git repository.
 ## Usage
   Run the script with the following command where MERCURIAL_REPOSITORY is the path to the 
   repository you want to convert and CONVERTED_GIT_REPOSITORY is the location where the
-  resulting Git repository will be written to. None of the paths may contain spaces. The 
-  optional parameter can be used to redirect the output of fast-export to a file.
+  resulting Git repository will be written to. The optional parameter can be used to 
+  redirect the output of fast-export to a file.
 
     ./run-cleanup-and-conversion.sh MERCURIAL_REPOSITORY CONVERTED_GIT_REPOSITORY \
         [--redirect-fast-export-stderr FILE]

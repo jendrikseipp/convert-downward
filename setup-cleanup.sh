@@ -22,16 +22,16 @@ if [[ ${MISSING_REQUIREMENTS} != "" ]]; then
 fi
 
 # Setup a Python virtual environment with the right Mercurial version
-BASE=$(realpath $(dirname $(readlink -f $0)))
+BASE="$(realpath "$(dirname "$(readlink -f "$0")")")"
 VIRTUALENV="${BASE}/data/py3-env"
 MERCURIAL_VERSION="mercurial==5.2"
 
 echo "Setup python virtual environment."
-if [[ ! -d ${VIRTUALENV} ]]; then
-    python3 -m venv ${VIRTUALENV}
+if [[ ! -d "${VIRTUALENV}" ]]; then
+    python3 -m venv "${VIRTUALENV}"
     source "$VIRTUALENV/bin/activate"
     pip install --upgrade pip wheel
-    pip install ${MERCURIAL_VERSION}
+    pip install "${MERCURIAL_VERSION}"
     echo `hg --version | grep "version"`
 fi
 echo "Done."
