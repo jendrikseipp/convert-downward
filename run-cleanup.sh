@@ -46,5 +46,5 @@ HGRCPATH= hg \
  --branchmap "${BASE}/data/downward_branchmap.txt"
 
 cd "${CLEANED_REPOSITORY}"
-hg --config extensions.strip= strip "branch(issue323)" --nobackup
-hg --config extensions.strip= strip "branch(ipc-2011-fixes)" --nobackup
+HGRCPATH= hg --config extensions.strip= strip "branch(issue323)" --nobackup
+HGRCPATH= hg --config extensions.strip= strip "branch(ipc-2011-fixes)" --nobackup
