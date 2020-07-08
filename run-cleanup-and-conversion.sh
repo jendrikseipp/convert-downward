@@ -12,20 +12,20 @@ SRC_REPOSITORY="$1"
 CONVERTED_REPOSITORY="$2"
 shift 2
 
-if [[ ! -d "$SRC_REPOSITORY" ]]; then
-  echo "Invalid argument. $SRC_REPOSITORY has to be a directory."
+if [[ ! -d "${SRC_REPOSITORY}" ]]; then
+  echo "Invalid argument. ${SRC_REPOSITORY} has to be a directory."
   exit 1
 fi
 
-if [[ -e "$CONVERTED_REPOSITORY" ]]; then
-  echo "Invalid argument. $CONVERTED_REPOSITORY may not exist."
+if [[ -e "${CONVERTED_REPOSITORY}" ]]; then
+  echo "Invalid argument. ${CONVERTED_REPOSITORY} may not exist."
   exit 1
 fi
 
 TEMP_DIR="$(mktemp -d)"
-echo "Storing intermediate repository under $TEMP_DIR"
+echo "Storing intermediate repository under ${TEMP_DIR}"
 # Generate a path to a non-existing temporary directory.
-INTERMEDIATE_REPOSITORY="$TEMP_DIR/intermediate"
+INTERMEDIATE_REPOSITORY="${TEMP_DIR}/intermediate"
 BASE="$(realpath "$(dirname "$(readlink -f "$0")")")"
 SETUP_CLEANUP="${BASE}/setup-cleanup.sh"
 SETUP_CONVERSION="${BASE}/setup-conversion.sh"
@@ -42,15 +42,15 @@ if ! /bin/bash "${SETUP_CONVERSION}"; then
   exit 2
 fi
 
-if ! "${RUN_CLEANUP}" "$SRC_REPOSITORY" "$INTERMEDIATE_REPOSITORY"; then
+if ! "${RUN_CLEANUP}" "${SRC_REPOSITORY}" "${INTERMEDIATE_REPOSITORY}"; then
   echo "Cleanup failed."
   exit 2
 fi
 
-if ! "${RUN_CONVERSION}" "$INTERMEDIATE_REPOSITORY" "$CONVERTED_REPOSITORY" $@; then
+if ! "${RUN_CONVERSION}" "${INTERMEDIATE_REPOSITORY}" "${CONVERTED_REPOSITORY}" $@; then
   echo "Conversion failed."
   exit 2
 fi
 
 echo "Removing intermediate repository."
-rm -r "$TEMP_DIR"
+rm -r "${TEMP_DIR}"

@@ -16,6 +16,6 @@ if ! /bin/bash "${SETUP_CONVERSION}"; then
   exit 2
 fi
 
-source "$VIRTUALENV/bin/activate"
+source "${VIRTUALENV}/bin/activate"
 
-python3 "${CONVERT}" "$INTERMEDIATE_REPOSITORY" "$CONVERTED_REPOSITORY" $@
+python3 "${CONVERT}" "${INTERMEDIATE_REPOSITORY}" "${CONVERTED_REPOSITORY}" $@

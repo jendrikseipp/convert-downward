@@ -29,7 +29,7 @@ MERCURIAL_VERSION="mercurial==5.2"
 echo "Setup python virtual environment."
 if [[ ! -d "${VIRTUALENV}" ]]; then
     python3 -m venv "${VIRTUALENV}"
-    source "$VIRTUALENV/bin/activate"
+    source "${VIRTUALENV}/bin/activate"
     pip install --upgrade pip wheel
     pip install "${MERCURIAL_VERSION}"
     echo `hg --version | grep "version"`
