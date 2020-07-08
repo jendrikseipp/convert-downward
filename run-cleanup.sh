@@ -48,3 +48,6 @@ HGRCPATH= hg \
 cd "${CLEANED_REPOSITORY}"
 HGRCPATH= hg --config extensions.strip= strip "branch(issue323)" --nobackup
 HGRCPATH= hg --config extensions.strip= strip "branch(ipc-2011-fixes)" --nobackup
+
+# Custom additions.
+HGRCPATH= hg --config extensions.strip= strip "branch(issue397)" --nobackup
