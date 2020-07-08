@@ -7,7 +7,7 @@ MISSING_REQUIREMENTS=""
 if ! command -v python3 > /dev/null; then
     MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.6+"
 elif [[ `python3 -c "import sys; print(sys.version_info < (3,6))"` = "True" ]];then
-        MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.6+"
+    MISSING_REQUIREMENTS="${MISSING_REQUIREMENTS}\nMissing requirement: python3.6+"
 fi
 
 if ! `python3 -c "import ensurepip" 2> /dev/null`; then
